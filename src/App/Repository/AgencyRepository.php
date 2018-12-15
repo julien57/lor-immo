@@ -10,4 +10,12 @@ namespace App\Repository;
  */
 class AgencyRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findById(int $id)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

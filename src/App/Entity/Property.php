@@ -103,11 +103,13 @@ class Property
 
     /**
      * @param string $title
+     *
      * @return Property
      */
     public function setTitle(string $title): Property
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -121,11 +123,13 @@ class Property
 
     /**
      * @param string $description
+     *
      * @return Property
      */
     public function setDescription(string $description): Property
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -139,11 +143,13 @@ class Property
 
     /**
      * @param int $room
+     *
      * @return Property
      */
     public function setRoom(int $room): Property
     {
         $this->room = $room;
+
         return $this;
     }
 
@@ -157,11 +163,13 @@ class Property
 
     /**
      * @param int $bedroom
+     *
      * @return Property
      */
     public function setBedroom(int $bedroom): Property
     {
         $this->bedroom = $bedroom;
+
         return $this;
     }
 
@@ -175,11 +183,13 @@ class Property
 
     /**
      * @param bool $garage
+     *
      * @return Property
      */
     public function setGarage(bool $garage): Property
     {
         $this->garage = $garage;
+
         return $this;
     }
 
@@ -193,11 +203,13 @@ class Property
 
     /**
      * @param string $heater
+     *
      * @return Property
      */
     public function setHeater(string $heater): Property
     {
         $this->heater = $heater;
+
         return $this;
     }
 
@@ -211,11 +223,13 @@ class Property
 
     /**
      * @param int $area
+     *
      * @return Property
      */
     public function setArea(int $area): Property
     {
         $this->area = $area;
+
         return $this;
     }
 
@@ -229,11 +243,13 @@ class Property
 
     /**
      * @param int $garden
+     *
      * @return Property
      */
     public function setGarden(int $garden): Property
     {
         $this->garden = $garden;
+
         return $this;
     }
 
@@ -247,12 +263,14 @@ class Property
 
     /**
      * @param string $city
+     *
      * @return Property
      */
     public function setCity(string $city): Property
     {
         $this->city = $city;
+
         return $this;
     }
-}
 
+}

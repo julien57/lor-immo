@@ -38,6 +38,13 @@ class Agency
     /**
      * @var string
      *
+     * @ORM\Column(name="password", type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
@@ -99,6 +106,24 @@ class Agency
     /**
      * @return string
      */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     * @return Agency
+     */
+    public function setPassword(string $password): Agency
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function getAddress(): string
     {
         return $this->address;
@@ -144,4 +169,3 @@ class Agency
         $this->website = $website;
     }
 }
-
