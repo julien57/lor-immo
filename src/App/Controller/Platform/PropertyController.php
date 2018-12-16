@@ -34,7 +34,7 @@ class PropertyController extends Controller
      */
     public function showAction(Property $property)
     {
-        return $this->render('platform/show.html.twig', [
+        return $this->render('platform/show_property.html.twig', [
             'property' => $property
         ]);
     }

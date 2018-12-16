@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} {{ property.title }}{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">{{ property.title }}</h1>
+            <p class="lead">{{ property.description }}</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="card-img-top" src="..." alt="Card image cap">
+            </div>
+            <div class="col-md-6">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-description" role="tab" aria-controls="nav-home" aria-selected="true">Description</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-specification" role="tab" aria-controls="nav-profile" aria-selected="false">caractéristiques</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-agency" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-home-tab">
+                        {{ property.description }}
+                    </div>
+                    <div class="tab-pane fade" id="nav-specification" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <p><i class="fas fa-chart-area"></i> Surface : {{ property.area }} m2</p>
+                        <p><i class="fas fa-fire"></i> Chauffage : {{ property.heater }}</p>
+                        <p><i class="far fa-square"></i> Pièces : {{ property.room }} pièces</p>
+                        <p><i class="fas fa-bed"></i> Chambres : {{ property.bedroom }} chambre{% if property.bedroom > 1 %}s{% endif %}</p>
+                        <p><i class="fas fa-warehouse"></i> Garage : {% if property.garden %}Oui{% else %}Non{% endif %}</p>
+                        <p><i class="fas fa-tree"></i> Jardin : {{ property.garden }} m2</p>
+                    </div>
+                    <div class="tab-pane fade" id="nav-agency" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <p>Te</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('#myTab a').on('click', function (e) {
+            e.preventDefault();
+            $(this).tab('show')
+        });
+        $('#myTab a[href="#profile"]').tab('show');
+        $('#myTab li:first-child a').tab('show');
+        $('#myTab li:last-child a').tab('show');
+        $('#myTab li:nth-child(3) a').tab('show');
+    </script>
+{% endblock %}
