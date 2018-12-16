@@ -2,7 +2,6 @@
 
 namespace App\Controller\Platform;
 
-use App\Entity\Agency;
 use App\Entity\Property;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,20 +14,10 @@ class HomeController extends Controller
      */
     public function indexAction(EntityManagerInterface $em)
     {
-        $properties = $em->getRepository(Property::class)->findAll();
+        $properties = $em->getRepository(Property::class)->findLast9Properties();
 
         return $this->render('platform/index.html.twig', [
             'properties' => $properties
-        ]);
-    }
-
-    /**
-     * @Route("/bien/{id}", name="platform_home_show")
-     */
-    public function showAction(Property $property)
-    {
-        return $this->render('platform/show.html.twig', [
-            'property' => $property
         ]);
     }
 }

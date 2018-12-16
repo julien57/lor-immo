@@ -10,4 +10,22 @@ namespace App\Repository;
  */
 class PropertyRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findLast9Properties()
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.agency', 'a')
+            ->addSelect('a')
+            ->setMaxResults(9)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllProperties()
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.agency', 'a')
+            ->addSelect('a')
+            ->getQuery()
+            ->getResult();
+    }
 }

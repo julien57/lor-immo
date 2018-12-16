@@ -7,6 +7,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 
+/**
+ * This fictures add new agencies without properties
+ */
 class AgencyFixtures extends Fixture
 {
     /**
@@ -20,7 +23,7 @@ class AgencyFixtures extends Fixture
         for ($i = 1; $i <= 3; $i++) {
 
             $agency = new Agency();
-            $agency->setName('Agency'.$i);
+            $agency->setName($faker->company);
             $agency->setDescription($faker->text);
             $agency->setPhone('03'.$faker->randomNumber());
             $agency->setWebsite($faker->url);

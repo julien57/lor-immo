@@ -84,6 +84,13 @@ class Property
      */
     private $city;
 
+    /**
+     * @var Agency
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Agency")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $agency;
 
     /**
      * @return int
@@ -273,4 +280,19 @@ class Property
         return $this;
     }
 
+    /**
+     * @return Agency
+     */
+    public function getAgency(): Agency
+    {
+        return $this->agency;
+    }
+
+    /**
+     * @param Agency $agency
+     */
+    public function setAgency(Agency $agency): void
+    {
+        $this->agency = $agency;
+    }
 }

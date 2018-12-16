@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Agency;
 use App\Entity\Property;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -9,10 +10,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 
 /**
- * Fixtures add properties by agencies in DB.
- * If command doctrine:fixtures:load failed verify the id of agencies in your DB.
+ * This fixtures add agencies with properties.
  */
-class PropertyFixtures extends Fixture implements DependentFixtureInterface
+class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -22,6 +22,18 @@ class PropertyFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create();
+
+        // Add a new agency with properties
+        $agency = new Agency();
+        $agency->setName('Agency1');
+        $agency->setDescription($faker->text);
+        $agency->setPhone('03'.$faker->randomNumber());
+        $agency->setWebsite($faker->url);
+        $agency->setAddress($faker->address);
+        $agency->setPassword('Agency');
+
+        $manager->persist($agency);
+
         for ($i = 1; $i <= 10; $i++) {
 
             $property = new Property();
@@ -34,9 +46,21 @@ class PropertyFixtures extends Fixture implements DependentFixtureInterface
             $property->setBedroom($faker->numberBetween(1,5));
             $property->setHeater($faker->randomElement(['Gaz', 'Electrique', 'Fioul']));
             $property->setRoom($faker->numberBetween(2, 7));
+            $property->setAgency($agency);
 
             $manager->persist($property);
         }
+
+        // Add a new agency with other other new properties
+        $agency2 = new Agency();
+        $agency2->setName('Agency2');
+        $agency2->setDescription($faker->text);
+        $agency2->setPhone('03'.$faker->randomNumber());
+        $agency2->setWebsite($faker->url);
+        $agency2->setAddress($faker->address);
+        $agency2->setPassword('Agency');
+
+        $manager->persist($agency2);
 
         for ($i = 1; $i <= 5; $i++) {
 
@@ -50,9 +74,21 @@ class PropertyFixtures extends Fixture implements DependentFixtureInterface
             $property2->setBedroom($faker->numberBetween(1,5));
             $property2->setHeater($faker->randomElement(['Gaz', 'Electrique', 'Fioul']));
             $property2->setRoom($faker->numberBetween(2, 7));
+            $property2->setAgency($agency2);
 
             $manager->persist($property2);
         }
+
+        // Add a new agency with other new properties
+        $agency3 = new Agency();
+        $agency3->setName('Agency3');
+        $agency3->setDescription($faker->text);
+        $agency3->setPhone('03'.$faker->randomNumber());
+        $agency3->setWebsite($faker->url);
+        $agency3->setAddress($faker->address);
+        $agency3->setPassword('Agency');
+
+        $manager->persist($agency3);
 
         for ($i = 1; $i <= 8; $i++) {
 
@@ -66,6 +102,7 @@ class PropertyFixtures extends Fixture implements DependentFixtureInterface
             $property3->setBedroom($faker->numberBetween(1,5));
             $property3->setHeater($faker->randomElement(['Gaz', 'Electrique', 'Fioul']));
             $property3->setRoom($faker->numberBetween(2, 7));
+            $property3->setAgency($agency3);
 
             $manager->persist($property3);
         }
