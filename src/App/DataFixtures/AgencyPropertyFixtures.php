@@ -46,6 +46,9 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
             $property->setBedroom($faker->numberBetween(1,5));
             $property->setHeater($faker->randomElement(['Gaz', 'Electrique', 'Fioul']));
             $property->setRoom($faker->numberBetween(2, 7));
+            $property->setType($faker->randomElement(['Appartement', 'Maison', 'Terrain']));
+            $property->setPrice($faker->numberBetween(40000, 350000));
+            $property->setDepartment($faker->randomElement(['Moselle', 'Meurthe-et-Moselle', 'Vosges', 'Meuse']));
             $property->setAgency($agency);
 
             $manager->persist($property);
@@ -74,6 +77,9 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
             $property2->setBedroom($faker->numberBetween(1,5));
             $property2->setHeater($faker->randomElement(['Gaz', 'Electrique', 'Fioul']));
             $property2->setRoom($faker->numberBetween(2, 7));
+            $property2->setType($faker->randomElement(['Appartement', 'Maison', 'Terrain']));
+            $property2->setPrice($faker->numberBetween(40000, 350000));
+            $property2->setDepartment($faker->randomElement(['Moselle', 'Meurthe-et-Moselle', 'Vosges', 'Meuse']));
             $property2->setAgency($agency2);
 
             $manager->persist($property2);
@@ -102,6 +108,9 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
             $property3->setBedroom($faker->numberBetween(1,5));
             $property3->setHeater($faker->randomElement(['Gaz', 'Electrique', 'Fioul']));
             $property3->setRoom($faker->numberBetween(2, 7));
+            $property3->setType($faker->randomElement(['Appartement', 'Maison', 'Terrain']));
+            $property3->setPrice($faker->numberBetween(40000, 350000));
+            $property3->setDepartment($faker->randomElement(['Moselle', 'Meurthe-et-Moselle', 'Vosges', 'Meuse']));
             $property3->setAgency($agency3);
 
             $manager->persist($property3);

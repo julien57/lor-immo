@@ -3,6 +3,8 @@
 namespace App\Controller\Platform;
 
 use App\Entity\Property;
+use App\Form\SearchPropertyType;
+use App\Model\SearchPropertyDTO;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,16 +18,19 @@ class PropertyController extends Controller
      */
     public function propertiesAction(EntityManagerInterface $em, PaginatorInterface $knpPaginator, Request $request)
     {
-        $properties = $em->getRepository(Property::class)->findAllProperties();
+        $searchPropertyDTO = new SearchPropertyDTO();
+        $form = $this->createForm(SearchPropertyType::class, $searchPropertyDTO);
+        $form->handleRequest($request);
 
         $pagination = $knpPaginator->paginate(
-            $properties,
+            $em->getRepository(Property::class)->findAllProperties($searchPropertyDTO),
             $request->query->getInt('page', 1),
             9
         );
 
         return $this->render('platform/properties.html.twig', [
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'form' => $form->createView()
         ]);
     }
 
@@ -35,7 +40,7 @@ class PropertyController extends Controller
     public function showAction(Property $property)
     {
         return $this->render('platform/show_property.html.twig', [
-            'property' => $property
+            'property' => $property,
         ]);
     }
 }

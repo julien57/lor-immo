@@ -2,6 +2,9 @@
 
 namespace App\Repository;
 
+use App\Model\SearchPropertyDTO;
+use Doctrine\ORM\Query;
+
 /**
  * PropertyRepository
  *
@@ -10,7 +13,10 @@ namespace App\Repository;
  */
 class PropertyRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findLast9Properties()
+    /**
+     * @return array
+     */
+    public function findLast9Properties(): array
     {
         return $this->createQueryBuilder('p')
             ->join('p.agency', 'a')
@@ -20,12 +26,40 @@ class PropertyRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
-    public function findAllProperties()
+    /**
+     * @param SearchPropertyDTO $searchPropertyDTO
+     * @return array
+     */
+    public function findAllProperties(SearchPropertyDTO $searchPropertyDTO): array
     {
-        return $this->createQueryBuilder('p')
+        $query = $this->createQueryBuilder('p')
             ->join('p.agency', 'a')
-            ->addSelect('a')
-            ->getQuery()
-            ->getResult();
+            ->addSelect('a');
+
+        if ($searchPropertyDTO->getType()) {
+            $query = $query
+                ->andWhere('p.type = :type')
+                ->setParameter('type', $searchPropertyDTO->getType());
+        }
+
+        if ($searchPropertyDTO->getDepartment()) {
+            $query = $query
+                ->andWhere('p.department = :department')
+                ->setParameter('department', $searchPropertyDTO->getDepartment());
+        }
+
+        if ($searchPropertyDTO->getMinPrice()) {
+            $query = $query
+                ->andWhere('p.price >= :minPrice')
+                ->setParameter('minPrice', $searchPropertyDTO->getMinPrice());
+        }
+
+        if ($searchPropertyDTO->getMaxPrice()) {
+            $query = $query
+                ->andWhere('p.price <= :maxPrice')
+                ->setParameter('maxPrice', $searchPropertyDTO->getMaxPrice());
+        }
+
+        return $query->getQuery()->getResult();
     }
 }

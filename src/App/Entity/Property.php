@@ -85,6 +85,27 @@ class Property
     private $city;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="department", type="string", length=255)
+     */
+    private $department;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="price", type="integer")
+     */
+    private $price;
+
+    /**
      * @var Agency
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Agency")
@@ -277,6 +298,60 @@ class Property
     {
         $this->city = $city;
 
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartment(): string
+    {
+        return $this->department;
+    }
+
+    /**
+     * @param string $department
+     * @return Property
+     */
+    public function setDepartment(string $department): Property
+    {
+        $this->department = $department;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return Property
+     */
+    public function setType(string $type): Property
+    {
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param int $price
+     * @return Property
+     */
+    public function setPrice(int $price): Property
+    {
+        $this->price = $price;
         return $this;
     }
 

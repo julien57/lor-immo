@@ -8,8 +8,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Lor-Immo</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-light">
+            <a class="navbar-brand" href="{{ path('platform_home_index') }}">Lor-Immo</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,10 +26,14 @@
                         <a class="nav-link" href="{{ path('platform_agency_agencies') }}">Agences</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <ul class="navbar-nav form-inline">
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Inscription</a>
+                    </li>
+                </ul>
             </div>
         </nav>
         {% block body %}{% endblock %}

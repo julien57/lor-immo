@@ -7,6 +7,25 @@
         <div class="container">
             <h1 class="display-4">Biens immobiliers</h1>
             <p class="lead">Liste des biens en vente.</p>
+            {{ form_start(form) }}
+                <div class="form-row">
+                    <div class="col">
+                        {{ form_row(form.type) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.department) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.minPrice) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.maxPrice) }}
+                    </div>
+                </div>
+                <div class="float-right">
+                    <button type="submit" class="btn btn-secondary">Rechercher</button>
+                </div>
+            {{ form_end(form) }}
         </div>
     </div>
 
@@ -17,9 +36,9 @@
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="..." alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">{{ property.title }} ({{ property.agency.name }})</h5>
+                            <h5 class="card-title">{{ property.type }} à {{ property.city }} - {{ property.area }} m²</h5>
                             <p class="card-text">{{ property.description|slice(0, 100) ~ '...' }}</p>
-                            <a href="{{ path('platform_property_show', {'id': property.id}) }}" class="btn btn-primary">Voir ce bien</a>
+                            <a href="{{ path('platform_property_show', {'id': property.id}) }}" class="btn btn-info">Voir ce bien</a>
                         </div>
                     </div>
                 </div>
