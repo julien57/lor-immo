@@ -25,7 +25,7 @@ class AgencyController extends Controller
         );
 
         return $this->render('platform/agencies.html.twig', [
-            'pagination' => $pagination
+            'pagination' => $pagination,
         ]);
     }
 }

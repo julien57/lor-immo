@@ -30,7 +30,7 @@ class PropertyController extends Controller
 
         return $this->render('platform/properties.html.twig', [
             'pagination' => $pagination,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 

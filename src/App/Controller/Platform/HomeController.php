@@ -17,9 +17,7 @@ class HomeController extends Controller
         $properties = $em->getRepository(Property::class)->findLast9Properties();
 
         return $this->render('platform/index.html.twig', [
-            'properties' => $properties
+            'properties' => $properties,
         ]);
     }
-
-
 }

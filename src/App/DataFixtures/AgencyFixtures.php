@@ -21,7 +21,6 @@ class AgencyFixtures extends Fixture
     {
         $faker = Factory::create();
         for ($i = 1; $i <= 3; $i++) {
-
             $agency = new Agency();
             $agency->setName($faker->company);
             $agency->setDescription($faker->text);

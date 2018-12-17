@@ -35,15 +35,14 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $manager->persist($agency);
 
         for ($i = 1; $i <= 10; $i++) {
-
             $property = new Property();
             $property->setTitle($faker->company);
             $property->setDescription($faker->text);
-            $property->setGarden($faker->numberBetween(0,500));
+            $property->setGarden($faker->numberBetween(0, 500));
             $property->setGarage($faker->boolean);
             $property->setCity($faker->city);
             $property->setArea($faker->numberBetween(40, 130));
-            $property->setBedroom($faker->numberBetween(1,5));
+            $property->setBedroom($faker->numberBetween(1, 5));
             $property->setHeater($faker->randomElement(['Gaz', 'Electrique', 'Fioul']));
             $property->setRoom($faker->numberBetween(2, 7));
             $property->setType($faker->randomElement(['Appartement', 'Maison', 'Terrain']));
@@ -66,15 +65,14 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $manager->persist($agency2);
 
         for ($i = 1; $i <= 5; $i++) {
-
             $property2 = new Property();
             $property2->setTitle($faker->company);
             $property2->setDescription($faker->text);
-            $property2->setGarden($faker->numberBetween(0,500));
+            $property2->setGarden($faker->numberBetween(0, 500));
             $property2->setGarage($faker->boolean);
             $property2->setCity($faker->city);
             $property2->setArea($faker->numberBetween(40, 130));
-            $property2->setBedroom($faker->numberBetween(1,5));
+            $property2->setBedroom($faker->numberBetween(1, 5));
             $property2->setHeater($faker->randomElement(['Gaz', 'Electrique', 'Fioul']));
             $property2->setRoom($faker->numberBetween(2, 7));
             $property2->setType($faker->randomElement(['Appartement', 'Maison', 'Terrain']));
@@ -97,15 +95,14 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $manager->persist($agency3);
 
         for ($i = 1; $i <= 8; $i++) {
-
             $property3 = new Property();
             $property3->setTitle($faker->company);
             $property3->setDescription($faker->text);
-            $property3->setGarden($faker->numberBetween(0,500));
+            $property3->setGarden($faker->numberBetween(0, 500));
             $property3->setGarage($faker->boolean);
             $property3->setCity($faker->city);
             $property3->setArea($faker->numberBetween(40, 130));
-            $property3->setBedroom($faker->numberBetween(1,5));
+            $property3->setBedroom($faker->numberBetween(1, 5));
             $property3->setHeater($faker->randomElement(['Gaz', 'Electrique', 'Fioul']));
             $property3->setRoom($faker->numberBetween(2, 7));
             $property3->setType($faker->randomElement(['Appartement', 'Maison', 'Terrain']));
@@ -127,7 +124,7 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
     public function getDependencies()
     {
         return [
-            AgencyFixtures::class
+            AgencyFixtures::class,
         ];
     }
 }

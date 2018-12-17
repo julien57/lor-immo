@@ -311,11 +311,13 @@ class Property
 
     /**
      * @param string $department
+     *
      * @return Property
      */
     public function setDepartment(string $department): Property
     {
         $this->department = $department;
+
         return $this;
     }
 
@@ -329,11 +331,13 @@ class Property
 
     /**
      * @param string $type
+     *
      * @return Property
      */
     public function setType(string $type): Property
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -347,11 +351,13 @@ class Property
 
     /**
      * @param int $price
+     *
      * @return Property
      */
     public function setPrice(int $price): Property
     {
         $this->price = $price;
+
         return $this;
     }
 

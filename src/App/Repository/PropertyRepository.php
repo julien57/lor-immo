@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Model\SearchPropertyDTO;
-use Doctrine\ORM\Query;
 
 /**
  * PropertyRepository
@@ -28,6 +27,7 @@ class PropertyRepository extends \Doctrine\ORM\EntityRepository
 
     /**
      * @param SearchPropertyDTO $searchPropertyDTO
+     *
      * @return array
      */
     public function findAllProperties(SearchPropertyDTO $searchPropertyDTO): array

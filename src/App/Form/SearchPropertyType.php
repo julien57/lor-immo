@@ -18,27 +18,27 @@ class SearchPropertyType extends AbstractType
                 'choices' => [
                     'Maison' => 'Maison',
                     'Appartement' => 'Appartement',
-                    'Terrain' => 'Terrain'
+                    'Terrain' => 'Terrain',
                 ],
-                'label' => 'Type de bien'
+                'label' => 'Type de bien',
             ])
             ->add('department', ChoiceType::class, [
                 'choices' => [
                     'Meurthe-et-Moselle' => 'Meurthe-et-Moselle',
                     'Meuse' => 'Meuse',
                     'Moselle' => 'Moselle',
-                    'Vosges' => 'Vosges'
+                    'Vosges' => 'Vosges',
                 ],
                 'label' => 'Département',
-                'required' => false
+                'required' => false,
             ])
             ->add('minPrice', TextType::class, [
                 'label' => 'Prix minimum',
-                'required' => false
+                'required' => false,
             ])
             ->add('maxPrice', TextType::class, [
                 'label' => 'Prix maximum',
-                'required' => false
+                'required' => false,
             ])
         ;
     }
@@ -48,7 +48,7 @@ class SearchPropertyType extends AbstractType
         $resolver->setDefaults([
             'data_class' => SearchPropertyDTO::class,
             'method' => 'get',
-            'csrf_protection' => false
+            'csrf_protection' => false,
         ]);
     }
 

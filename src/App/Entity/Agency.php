@@ -113,11 +113,13 @@ class Agency
 
     /**
      * @param string $password
+     *
      * @return Agency
      */
     public function setPassword(string $password): Agency
     {
         $this->password = $password;
+
         return $this;
     }
 
