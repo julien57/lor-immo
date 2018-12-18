@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="App\Repository\AgencyRepository")
  */
-class Agency implements UserInterface
+class Agency implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -77,6 +77,13 @@ class Agency implements UserInterface
      * @ORM\Column(name="website", type="string", length=255)
      */
     private $website;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
 
     /**
      * @return int
@@ -227,6 +234,24 @@ class Agency implements UserInterface
     }
 
     /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     * @return Agency
+     */
+    public function setEmail(string $email): Agency
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
      * Returns the roles granted to the user.
      *
      *     public function getRoles()
@@ -242,7 +267,7 @@ class Agency implements UserInterface
      */
     public function getRoles()
     {
-        // TODO: Implement getRoles() method.
+        return ['ROLE_USER'];
     }
 
     /**
@@ -254,7 +279,7 @@ class Agency implements UserInterface
      */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return null;
     }
 
     /**
@@ -264,7 +289,7 @@ class Agency implements UserInterface
      */
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        return $this->getName();
     }
 
     /**
@@ -275,6 +300,37 @@ class Agency implements UserInterface
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * String representation of object
+     * @link https://php.net/manual/en/serializable.serialize.php
+     * @return string the string representation of the object or null
+     * @since 5.1.0
+     */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->name,
+            $this->password
+        ]);
+    }
+
+    /**
+     * Constructs the object
+     * @link https://php.net/manual/en/serializable.unserialize.php
+     * @param string $serialized <p>
+     * The string representation of the object.
+     * </p>
+     * @return void
+     * @since 5.1.0
+     */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->name,
+            $this->password) = unserialize($serialized, ['allowed_classes' => false]);
     }
 }

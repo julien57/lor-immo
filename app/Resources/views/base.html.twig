@@ -29,7 +29,7 @@
                 <ul class="navbar-nav form-inline">
                     {% if is_granted('ROLE_USER') %}
                         <li class="nav-item">
-                            <span class="nav-link">{{ app.user.username }}</span>
+                            <span class="nav-link">{{ app.user.name }}</span>
                         </li>
                     {% else %}
                     <li class="nav-item">
