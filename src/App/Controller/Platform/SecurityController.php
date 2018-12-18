@@ -18,7 +18,7 @@ class SecurityController extends Controller
         }
 
         return $this->render('platform/connection.html.twig', [
-            'last_username' => $authenticationUtils->getLastUsername(),
+            'last' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
         ]);
     }
