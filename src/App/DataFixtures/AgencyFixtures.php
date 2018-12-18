@@ -26,7 +26,9 @@ class AgencyFixtures extends Fixture
             $agency->setDescription($faker->text);
             $agency->setPhone('03'.$faker->randomNumber());
             $agency->setWebsite($faker->url);
-            $agency->setAddress($faker->address);
+            $agency->setAddress($faker->streetAddress);
+            $agency->setPostcode(54000);
+            $agency->setCity($faker->city);
             $agency->setPassword('Agency');
 
             $manager->persist($agency);

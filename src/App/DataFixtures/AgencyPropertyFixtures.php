@@ -29,7 +29,9 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $agency->setDescription($faker->text);
         $agency->setPhone('03'.$faker->randomNumber());
         $agency->setWebsite($faker->url);
-        $agency->setAddress($faker->address);
+        $agency->setAddress($faker->streetAddress);
+        $agency->setPostcode(57000);
+        $agency->setCity($faker->city);
         $agency->setPassword('Agency');
 
         $manager->persist($agency);
@@ -59,7 +61,9 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $agency2->setDescription($faker->text);
         $agency2->setPhone('03'.$faker->randomNumber());
         $agency2->setWebsite($faker->url);
-        $agency2->setAddress($faker->address);
+        $agency2->setAddress($faker->streetAddress);
+        $agency2->setPostcode(57100);
+        $agency2->setCity($faker->city);
         $agency2->setPassword('Agency');
 
         $manager->persist($agency2);
@@ -89,7 +93,9 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $agency3->setDescription($faker->text);
         $agency3->setPhone('03'.$faker->randomNumber());
         $agency3->setWebsite($faker->url);
-        $agency3->setAddress($faker->address);
+        $agency3->setAddress($faker->streetAddress);
+        $agency3->setPostcode(88000);
+        $agency3->setCity($faker->city);
         $agency3->setPassword('Agency');
 
         $manager->persist($agency3);
