@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Model\RegistrationDTO;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="App\Repository\AgencyRepository")
  */
-class Agency implements UserInterface
+class Agency implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -26,13 +27,14 @@ class Agency implements UserInterface
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\JoinColumn(unique=true)
      */
     private $name;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -44,16 +46,16 @@ class Agency implements UserInterface
     private $password;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="address", type="string", length=255)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
-     * @var int
+     * @var int|null
      *
-     * @ORM\Column(name="postcode", type="integer")
+     * @ORM\Column(name="postcode", type="integer", nullable=true)
      */
     private $postcode;
 
@@ -65,18 +67,26 @@ class Agency implements UserInterface
     private $city;
 
     /**
-     * @var int
+     * @var int|null
      *
-     * @ORM\Column(name="phone", type="integer")
+     * @ORM\Column(name="phone", type="integer", nullable=true)
      */
     private $phone;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="website", type="string", length=255)
+     * @ORM\Column(name="website", type="string", length=255, nullable=true)
      */
     private $website;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\JoinColumn(unique=true)
+     */
+    private $email;
 
     /**
      * @return int
@@ -103,17 +113,17 @@ class Agency implements UserInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
-     * @param string $description
+     * @param null|string $description
      */
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
@@ -139,35 +149,34 @@ class Agency implements UserInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAddress(): string
+    public function getAddress(): ?string
     {
         return $this->address;
     }
 
     /**
-     * @param string $address
+     * @param null|string $address
      */
-    public function setAddress(string $address): void
+    public function setAddress(?string $address): void
     {
         $this->address = $address;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPostcode(): int
+    public function getPostcode(): ?int
     {
         return $this->postcode;
     }
 
     /**
-     * @param int $postcode
-     *
+     * @param int|null $postcode
      * @return Agency
      */
-    public function setPostcode(int $postcode): Agency
+    public function setPostcode(?int $postcode): Agency
     {
         $this->postcode = $postcode;
 
@@ -195,35 +204,53 @@ class Agency implements UserInterface
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPhone(): int
+    public function getPhone(): ?int
     {
         return $this->phone;
     }
 
     /**
-     * @param int $phone
+     * @param int|null $phone
      */
-    public function setPhone(int $phone): void
+    public function setPhone(?int $phone): void
     {
         $this->phone = $phone;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getWebsite(): string
+    public function getWebsite(): ?string
     {
         return $this->website;
     }
 
     /**
-     * @param string $website
+     * @param null|string $website
      */
-    public function setWebsite(string $website): void
+    public function setWebsite(?string $website): void
     {
         $this->website = $website;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     * @return Agency
+     */
+    public function setEmail(string $email): Agency
+    {
+        $this->email = $email;
+        return $this;
     }
 
     /**
@@ -242,7 +269,7 @@ class Agency implements UserInterface
      */
     public function getRoles()
     {
-        // TODO: Implement getRoles() method.
+        return ['ROLE_USER'];
     }
 
     /**
@@ -254,7 +281,7 @@ class Agency implements UserInterface
      */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return null;
     }
 
     /**
@@ -264,7 +291,7 @@ class Agency implements UserInterface
      */
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        return $this->getName();
     }
 
     /**
@@ -275,6 +302,48 @@ class Agency implements UserInterface
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * String representation of object
+     * @link https://php.net/manual/en/serializable.serialize.php
+     * @return string the string representation of the object or null
+     * @since 5.1.0
+     */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->name,
+            $this->password
+        ]);
+    }
+
+    /**
+     * Constructs the object
+     * @link https://php.net/manual/en/serializable.unserialize.php
+     * @param string $serialized <p>
+     * The string representation of the object.
+     * </p>
+     * @return void
+     * @since 5.1.0
+     */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->name,
+            $this->password) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    public static function registrationAgency(RegistrationDTO $registrationDTO)
+    {
+        $agency = new self();
+        $agency->name = $registrationDTO->getName();
+        $agency->city = $registrationDTO->getCity();
+        $agency->password = $registrationDTO->getPassword();
+        $agency->email = $registrationDTO->getEmail();
+
+        return $agency;
     }
 }

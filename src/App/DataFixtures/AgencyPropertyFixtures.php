@@ -8,12 +8,23 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * This fixtures add agencies with properties.
  */
 class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterface
 {
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     /**
      * Load data fixtures with the passed EntityManager
      *
@@ -32,7 +43,8 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $agency->setAddress($faker->streetAddress);
         $agency->setPostcode(57000);
         $agency->setCity($faker->city);
-        $agency->setPassword('Agency');
+        $agency->setEmail($faker->email);
+        $agency->setPassword($this->encoder->encodePassword($agency, 'Agency'));
 
         $manager->persist($agency);
 
@@ -64,7 +76,8 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $agency2->setAddress($faker->streetAddress);
         $agency2->setPostcode(57100);
         $agency2->setCity($faker->city);
-        $agency2->setPassword('Agency');
+        $agency2->setEmail($faker->email);
+        $agency2->setPassword($this->encoder->encodePassword($agency2, 'Agency'));
 
         $manager->persist($agency2);
 
@@ -96,7 +109,8 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $agency3->setAddress($faker->streetAddress);
         $agency3->setPostcode(88000);
         $agency3->setCity($faker->city);
-        $agency3->setPassword('Agency');
+        $agency3->setEmail($faker->email);
+        $agency3->setPassword($this->encoder->encodePassword($agency3, 'Agency'));
 
         $manager->persist($agency3);
 
