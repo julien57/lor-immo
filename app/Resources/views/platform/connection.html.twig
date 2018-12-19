@@ -12,6 +12,12 @@
 
     <div class="container">
 
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         {% if error %}
             <div class="alert alert-danger">{{ error.message }}</div>
         {% endif %}
