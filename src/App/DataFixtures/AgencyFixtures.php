@@ -6,12 +6,23 @@ use App\Entity\Agency;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * This fictures add new agencies without properties
  */
 class AgencyFixtures extends Fixture
 {
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     /**
      * Load data fixtures with the passed EntityManager
      *
@@ -29,7 +40,8 @@ class AgencyFixtures extends Fixture
             $agency->setAddress($faker->streetAddress);
             $agency->setPostcode(54000);
             $agency->setCity($faker->city);
-            $agency->setPassword('Agency');
+            $agency->setEmail($faker->email);
+            $agency->setPassword($this->encoder->encodePassword($agency, 'Agency'));
 
             $manager->persist($agency);
         }
