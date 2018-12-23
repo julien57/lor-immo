@@ -18,6 +18,7 @@ class SecurityController extends Controller
 {
     /**
      * @param AuthenticationUtils $authenticationUtils
+     *
      * @return RedirectResponse|Response
      *
      * @Route("/connexion", name="platform_security_login")
@@ -36,6 +37,7 @@ class SecurityController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return Response
      *
      * @Route("/inscription", name="platform_security_registration")
@@ -46,18 +48,18 @@ class SecurityController extends Controller
         $form = $this->createForm(RegistrationType::class, $registrationDTO)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $agency = Agency::registrationAgency($registrationDTO);
             $agency->setPassword($encoder->encodePassword($agency, $agency->getPassword()));
             $em->persist($agency);
             $em->flush();
 
-            $this->addFlash('notice','Inscription réussie, vous pouvez maintenant vous connecter.');
+            $this->addFlash('notice', 'Inscription réussie, vous pouvez maintenant vous connecter.');
+
             return $this->redirectToRoute('platform_security_login');
         }
 
         return $this->render('platform/registration.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class EditPropertyDTO
+class PropertyDTO
 {
     /**
      * @var string|null
@@ -33,6 +33,11 @@ class EditPropertyDTO
      * @var string|null
      */
     private $heater;
+
+    /**
+     * @var int|null
+     */
+    private $area;
 
     /**
      * @var int|null
@@ -153,6 +158,22 @@ class EditPropertyDTO
     public function setHeater(?string $heater): void
     {
         $this->heater = $heater;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getArea(): ?int
+    {
+        return $this->area;
+    }
+
+    /**
+     * @param int|null $area
+     */
+    public function setArea(?int $area): void
+    {
+        $this->area = $area;
     }
 
     /**

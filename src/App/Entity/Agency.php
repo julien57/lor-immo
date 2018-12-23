@@ -174,6 +174,7 @@ class Agency implements UserInterface, \Serializable
 
     /**
      * @param int|null $postcode
+     *
      * @return Agency
      */
     public function setPostcode(?int $postcode): Agency
@@ -245,11 +246,13 @@ class Agency implements UserInterface, \Serializable
 
     /**
      * @param string $email
+     *
      * @return Agency
      */
     public function setEmail(string $email): Agency
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -306,8 +309,11 @@ class Agency implements UserInterface, \Serializable
 
     /**
      * String representation of object
-     * @link https://php.net/manual/en/serializable.serialize.php
+     *
+     * @see https://php.net/manual/en/serializable.serialize.php
+     *
      * @return string the string representation of the object or null
+     *
      * @since 5.1.0
      */
     public function serialize()
@@ -315,17 +321,19 @@ class Agency implements UserInterface, \Serializable
         return serialize([
             $this->id,
             $this->name,
-            $this->password
+            $this->password,
         ]);
     }
 
     /**
      * Constructs the object
-     * @link https://php.net/manual/en/serializable.unserialize.php
+     *
+     * @see https://php.net/manual/en/serializable.unserialize.php
+     *
      * @param string $serialized <p>
-     * The string representation of the object.
-     * </p>
-     * @return void
+     *                           The string representation of the object.
+     *                           </p>
+     *
      * @since 5.1.0
      */
     public function unserialize($serialized)

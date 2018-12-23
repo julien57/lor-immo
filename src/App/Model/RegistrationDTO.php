@@ -37,11 +37,13 @@ class RegistrationDTO
 
     /**
      * @param null|string $name
+     *
      * @return RegistrationDTO
      */
     public function setName(?string $name): RegistrationDTO
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -55,11 +57,13 @@ class RegistrationDTO
 
     /**
      * @param null|string $city
+     *
      * @return RegistrationDTO
      */
     public function setCity(?string $city): RegistrationDTO
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -73,11 +77,13 @@ class RegistrationDTO
 
     /**
      * @param null|string $email
+     *
      * @return RegistrationDTO
      */
     public function setEmail(?string $email): RegistrationDTO
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -91,11 +97,13 @@ class RegistrationDTO
 
     /**
      * @param null|string $password
+     *
      * @return RegistrationDTO
      */
     public function setPassword(?string $password): RegistrationDTO
     {
         $this->password = $password;
+
         return $this;
     }
 }

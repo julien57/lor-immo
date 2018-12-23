@@ -18,26 +18,26 @@ class RegistrationType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'required' => true,
-                'label' => 'Nom de l\'agence :'
+                'label' => 'Nom de l\'agence :',
             ])
             ->add('city', TextType::class, [
                 'required' => true,
-                'label' => 'Ville :'
+                'label' => 'Ville :',
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
-                'label' => 'Adresse mail :'
+                'label' => 'Adresse mail :',
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les deux mots de passe doivent être identiques.',
                 'required' => true,
                 'first_options' => [
-                    'label' => 'Mot de passe :'
+                    'label' => 'Mot de passe :',
                 ],
                 'second_options' => [
-                    'label' => 'Confirmation mot de passe :'
-                ]
+                    'label' => 'Confirmation mot de passe :',
+                ],
             ]);
     }
 
