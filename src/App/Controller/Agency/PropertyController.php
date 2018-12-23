@@ -3,7 +3,9 @@
 namespace App\Controller\Agency;
 
 use App\Entity\Property;
+use App\Form\AddPropertyType;
 use App\Form\PropertyType;
+use App\Model\PropertyDTO;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -61,6 +63,33 @@ class PropertyController extends Controller
         $this->em->remove($property);
         $this->em->flush();
 
+        $this->addFlash('notice', 'Annonce bien supprimée !');
+
         return $this->redirectToRoute('agency_home_dashboard');
+    }
+
+    /**
+     * @Route("/ajouter-bien", name="agency_property_add")
+     */
+    public function addAction(Request $request)
+    {
+        $agency = $this->getUser();
+        $propertyDTO = new PropertyDTO();
+        $form = $this->createForm(AddPropertyType::class, $propertyDTO)->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $property = Property::initAgency($propertyDTO, $agency);
+            $this->em->persist($property);
+            $this->em->flush();
+
+            $this->addFlash('notice', 'Annonce bien ajoutée !');
+
+            return $this->redirectToRoute('agency_home_dashboard');
+        }
+
+        return $this->render('agency/add.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

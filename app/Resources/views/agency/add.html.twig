@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-light">
-                        Modification du bien n°{{ property.id }}
+                        Ajouter un bien
                     </div>
 
                     <div class="card-body">
@@ -16,44 +16,44 @@
 
                         <div class="row">
                             <div class="col-md-3">
-                                {{ form_row(form.title, {'value': property.title}) }}
+                                {{ form_row(form.title) }}
 
-                                {{ form_row(form.room, {'value': property.room}) }}
+                                {{ form_row(form.room) }}
 
-                                {{ form_row(form.bedroom, {'value': property.bedroom}) }}
+                                {{ form_row(form.bedroom) }}
                             </div>
                             <div class="col-md-9">
-                                {{ form_row(form.description, {'value': property.description}) }}
+                                {{ form_row(form.description) }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-3">
-                                {{ form_row(form.area, {'value': property.area}) }}
+                                {{ form_row(form.area) }}
                             </div>
                             <div class="col-md-3">
-                                {{ form_row(form.garden, {'value': property.garden}) }}
+                                {{ form_row(form.garden) }}
                             </div>
                             <div class="col-md-3">
-                                {{ form_row(form.heater, {'value': property.heater}) }}
+                                {{ form_row(form.heater) }}
                             </div>
                             <div class="col-md-3">
-                                {{ form_row(form.garage, {'value': property.garage}) }}
+                                {{ form_row(form.garage) }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                {{ form_row(form.type, {'value': property.type}) }}
+                                {{ form_row(form.type) }}
                             </div>
                             <div class="col-md-4">
-                                {{ form_row(form.department, {'value': property.department}) }}
+                                {{ form_row(form.department) }}
                             </div>
                             <div class="col-md-4">
-                                {{ form_row(form.city, {'value': property.city}) }}
+                                {{ form_row(form.city) }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                {{ form_row(form.price, {'value': property.price}) }}
+                                {{ form_row(form.price) }}
                             </div>
                         </div>
                         <div class="row">
@@ -65,13 +65,8 @@
                                 </div>
                                 <div class="float-right">
                                     <button type="submit" class="btn-lg btn-info">
-                                        <i class="fa fa-download"></i> Modifier
+                                        <i class="fa fa-download"></i> Ajouter
                                     </button>
-                                    <a href="{{ path('agency_property_remove', {'id': property.id}) }}"
-                                       class="btn-lg btn-danger"
-                                       onclick="return confirm('Etes-vous sur de vouloir supprimer l\'annonce ?')">
-                                        <i class="fa fa-trash"></i> Supprimer
-                                    </a>
                                 </div>
                             </div>
                         </div>

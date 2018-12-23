@@ -2,50 +2,66 @@
 
 namespace App\Model;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class PropertyDTO
 {
     /**
      * @var string|null
+     * @Assert\NotBlank(message="Veuillez ajouter un titre à l'annonce.")
      */
     private $title;
 
     /**
      * @var string|null
+     * @Assert\NotBlank(message="Veuillez ajouter une description à l'annonce.")
      */
     private $description;
 
     /**
      * @var int|null
+     * @Assert\NotBlank(message="Veuillez entrez le nombre de pièces même si celui-ci est à 0.")
+     * @Assert\Type(type="integer", message="Le nombre de pièces du bien doit être exprimée en chiffre.")
      */
     private $room;
 
     /**
      * @var int|null
+     * @Assert\NotBlank(message="Veuillez entrez le nombre de chambres même si celui-ci est à 0.")
+     * @Assert\Type(type="integer", message="Le nombre de chambres du bien doit être exprimée en chiffre.")
      */
     private $bedroom;
 
     /**
      * @var bool|null
+     * @Assert\Type(type="bool")
      */
     private $garage;
 
     /**
      * @var string|null
+     * @Assert\Type(type="string")
      */
     private $heater;
 
     /**
      * @var int|null
+     * @Assert\NotBlank(message="Veuillez renseigner la surface du bien.")
+     * @Assert\Type(type="integer", message="La surface du bien doit être exprimée en chiffre.")
      */
     private $area;
 
     /**
      * @var int|null
+     * @Assert\NotBlank(message="Veuillez renseigner la surface du terrain/jardin.")
+     * @Assert\Type(type="integer", message="La surface du jardin doit être exprimée en chiffres.")
      */
     private $garden;
 
     /**
      * @var string|null
+     * @Assert\NotBlank(message="Veuillez renseigner la commune où se trouve le bien.")
+     * @Assert\Type(type="string", message="La commune du bien doit être écrite en lettres.")
      */
     private $city;
 
@@ -61,6 +77,8 @@ class PropertyDTO
 
     /**
      * @var string|null
+     * @Assert\NotBlank(message="Veuillez renseigner le prix du bien.")
+     * @Assert\Type(type="string", message="Le prix du bien doit être exprimée en chiffre.")
      */
     private $price;
 
