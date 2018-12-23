@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Agency;
 use App\Model\SearchPropertyDTO;
 
 /**
@@ -61,5 +62,15 @@ class PropertyRepository extends \Doctrine\ORM\EntityRepository
         }
 
         return $query->getQuery()->getResult();
+    }
+
+    public function findByAgency(Agency $agency)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.agency = :agency')
+            ->setParameter('agency', $agency)
+            ->orderBy('p.id', 'desc')
+            ->getQuery()
+            ->getResult();
     }
 }
