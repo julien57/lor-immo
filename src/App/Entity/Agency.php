@@ -14,6 +14,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class Agency implements UserInterface, \Serializable
 {
+    const TARGET_DIR_IMAGE = __DIR__.'/../../../web/agency/imgs/uploads';
+
     /**
      * @var int
      *
@@ -37,6 +39,13 @@ class Agency implements UserInterface, \Serializable
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
 
     /**
      * @var string
@@ -126,6 +135,24 @@ class Agency implements UserInterface, \Serializable
     public function setDescription(?string $description): void
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param null|string $image
+     * @return Agency
+     */
+    public function setImage(?string $image): Agency
+    {
+        $this->image = $image;
+        return $this;
     }
 
     /**
