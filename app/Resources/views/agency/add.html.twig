@@ -28,10 +28,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3">
-                                {{ form_row(form.area) }}
+                                {{ form_row(form.area, {'attr': {'placeholder': '0 si nul'}}) }}
                             </div>
                             <div class="col-md-3">
-                                {{ form_row(form.garden) }}
+                                {{ form_row(form.garden, {'attr': {'placeholder': '0 si nul'}}) }}
                             </div>
                             <div class="col-md-3">
                                 {{ form_row(form.heater) }}

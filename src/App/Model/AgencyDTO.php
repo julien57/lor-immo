@@ -2,6 +2,9 @@
 
 namespace App\Model;
 
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+
 class AgencyDTO
 {
     /**
@@ -25,7 +28,7 @@ class AgencyDTO
     private $city;
 
     /**
-     * @var \Symfony\Component\HttpFoundation\File\File|null
+     * @var File|null
      */
     private $image;
 
@@ -36,11 +39,15 @@ class AgencyDTO
 
     /**
      * @var string|null
+     *
+     * @Assert\Email(message="L'adresse mail '{{ value }}' n'est pas valide.")
      */
     private $email;
 
     /**
      * @var string|null
+     *
+     * @Assert\Url(message="Le site '{{ value }}' n'est pas une URL valable.")
      */
     private $website;
 
@@ -109,17 +116,17 @@ class AgencyDTO
     }
 
     /**
-     * @return null|\Symfony\Component\HttpFoundation\File\File
+     * @return null|File
      */
-    public function getImage(): ?\Symfony\Component\HttpFoundation\File\File
+    public function getImage(): ?File
     {
         return $this->image;
     }
 
     /**
-     * @param null|\Symfony\Component\HttpFoundation\File\File $image
+     * @param null|File $image
      */
-    public function setImage(?\Symfony\Component\HttpFoundation\File\File $image): void
+    public function setImage(?File $image): void
     {
         $this->image = $image;
     }

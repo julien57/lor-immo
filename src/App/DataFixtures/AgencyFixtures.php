@@ -42,6 +42,7 @@ class AgencyFixtures extends Fixture
             $agency->setCity($faker->city);
             $agency->setEmail($faker->email);
             $agency->setPassword($this->encoder->encodePassword($agency, 'Agency'));
+            $agency->setImage('avatar-1.png');
 
             $manager->persist($agency);
         }

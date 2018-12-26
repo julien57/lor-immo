@@ -26,7 +26,7 @@ class AgencyController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $agency = $updateAgency->update($agencyDTO, $agency);
+            $updateAgency->update($agencyDTO, $agency);
             $em->flush();
 
             $this->addFlash('notice', 'Paramètres de l\'agence sauvegardés.');

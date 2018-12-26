@@ -378,6 +378,7 @@ class Agency implements UserInterface, \Serializable
         $agency->city = $registrationDTO->getCity();
         $agency->password = $registrationDTO->getPassword();
         $agency->email = $registrationDTO->getEmail();
+        $agency->image = 'avatar-1.png';
 
         return $agency;
     }

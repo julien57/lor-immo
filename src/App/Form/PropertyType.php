@@ -47,7 +47,7 @@ class PropertyType extends AbstractType
                 'label' => 'Surface du bien en m²',
             ])
             ->add('garden', TextType::class, [
-                'label' => 'Surface jardin en m²',
+                'label' => 'Surface jardin en m²'
             ])
             ->add('city', TextType::class, [
                 'label' => 'Commune',

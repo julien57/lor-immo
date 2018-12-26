@@ -22,29 +22,36 @@ class AgencyType extends AbstractType
                 'label' => 'Description de l\'agence',
                 'attr' => [
                     'rows' => 9
-                ]
+                ],
+                'required' => false
             ])
             ->add('image', FileType::class, [
                 'label' => 'Image ou logo de l\'agence',
                 'required' => false
             ])
             ->add('address', TextType::class, [
-                'label' => 'Adresse'
+                'label' => 'Adresse',
+                'required' => false
             ])
             ->add('postcode', TextType::class, [
-                'label' => 'Code Postal'
+                'label' => 'Code Postal',
+                'required' => false
             ])
             ->add('city', TextType::class, [
-                'label' => 'Commune'
+                'label' => 'Commune',
+                'required' => false
             ])
             ->add('phone', TelType::class, [
-                'label' => 'N° de téléphone'
+                'label' => 'N° de téléphone',
+                'required' => false
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Adresse mail'
+                'label' => 'Adresse mail',
+                'required' => false
             ])
             ->add('website', UrlType::class, [
-                'label' => 'Site Web'
+                'label' => 'Site Web',
+                'required' => false
             ]);
     }
 
