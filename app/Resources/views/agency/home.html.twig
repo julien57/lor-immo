@@ -46,16 +46,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for property in pagination %}
-                                <tr>
-                                    <td>{{ property.id }}</td>
-                                    <td class="text-nowrap">{{ property.title }}</td>
-                                    <td>{{ property.price|number_format(0, '.', '.') }}€</td>
-                                    <td>{{ property.city }}</td>
-                                    <td><a href="{{ path('platform_property_show', {'id': property.id}) }}" target="_blank" class="btn btn-info">Voir</a></td>
-                                    <td><a href="{{ path('agency_property_edit', {'id': property.id}) }}" class="btn btn-danger">Modifier</a></td>
-                                </tr>
-                                {% endfor %}
+                                {% if nbProperties != 0 %}
+                                    {% for property in pagination %}
+                                    <tr>
+                                        <td>{{ property.id }}</td>
+                                        <td class="text-nowrap">{{ property.title }}</td>
+                                        <td>{{ property.price|number_format(0, '.', '.') }}€</td>
+                                        <td>{{ property.city }}</td>
+                                        <td><a href="{{ path('platform_property_show', {'id': property.id}) }}" target="_blank" class="btn btn-info">Voir</a></td>
+                                        <td><a href="{{ path('agency_property_edit', {'id': property.id}) }}" class="btn btn-danger">Modifier</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td>Aucun bien en vente pour le moment</td>
+                                    </tr>
+                                {% endif %}
                                 </tbody>
                             </table>
                             {{ knp_pagination_render(pagination) }}

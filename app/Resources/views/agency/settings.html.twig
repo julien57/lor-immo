@@ -1,0 +1,63 @@
+{% extends 'agency_layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        Paramètres de mon compte agence
+                    </div>
+
+                    <div class="card-body">
+
+                        {{ form_start(form) }}
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_row(form.address, {'value': agency.address}) }}
+
+                                {{ form_row(form.postcode, {'value': agency.postcode}) }}
+
+                                {{ form_row(form.city, {'value': agency.city}) }}
+                            </div>
+                            <div class="col-md-9">
+                                {{ form_row(form.description, {'value': agency.description}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                {{ form_row(form.phone, {'value': agency.phone}) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_row(form.email, {'value': agency.email}) }}
+                            </div>
+                            <div class="col-md-3">
+                                {{ form_row(form.website, {'value': agency.website}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img style="width: 200px" src="{{ asset('agency/imgs/uploads/' ~ agency.image) }}"/>
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.image, {'value': agency.image}) }}
+                            </div>
+                        </div>
+                            <div class="float-right">
+                                <button type="submit" class="btn-lg btn-info">
+                                    <i class="fa fa-download"></i> Sauvegarder
+                                </button>
+                            </div>
+
+
+                        {{ form_end(form) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

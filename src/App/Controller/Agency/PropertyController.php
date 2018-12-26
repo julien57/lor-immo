@@ -31,7 +31,7 @@ class PropertyController extends Controller
      *
      * @return RedirectResponse|Response
      *
-     * @Route("/modification/bien/{id}", name="agency_property_edit")
+     * @Route("/agence/modification/bien/{id}", name="agency_property_edit")
      */
     public function editAction(Property $property, Request $request)
     {
@@ -56,7 +56,7 @@ class PropertyController extends Controller
      *
      * @return RedirectResponse
      *
-     * @Route("/suppression/{id}", name="agency_property_remove")
+     * @Route("/agence/suppression/{id}", name="agency_property_remove")
      */
     public function removeAction(Property $property): RedirectResponse
     {
@@ -69,7 +69,7 @@ class PropertyController extends Controller
     }
 
     /**
-     * @Route("/ajouter-bien", name="agency_property_add")
+     * @Route("/agence/ajouter-bien", name="agency_property_add")
      */
     public function addAction(Request $request)
     {
