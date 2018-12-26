@@ -45,6 +45,7 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $agency->setCity($faker->city);
         $agency->setEmail($faker->email);
         $agency->setPassword($this->encoder->encodePassword($agency, 'Agency'));
+        $agency->setImage('avatar-1.png');
 
         $manager->persist($agency);
 
@@ -78,6 +79,7 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $agency2->setCity($faker->city);
         $agency2->setEmail($faker->email);
         $agency2->setPassword($this->encoder->encodePassword($agency2, 'Agency'));
+        $agency2->setImage('avatar-1.png');
 
         $manager->persist($agency2);
 
@@ -111,6 +113,7 @@ class AgencyPropertyFixtures extends Fixture implements DependentFixtureInterfac
         $agency3->setCity($faker->city);
         $agency3->setEmail($faker->email);
         $agency3->setPassword($this->encoder->encodePassword($agency3, 'Agency'));
+        $agency3->setImage('avatar-1.png');
 
         $manager->persist($agency3);
 

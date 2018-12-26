@@ -1,0 +1,74 @@
+{% extends 'agency_layout.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card p-4">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="h4 d-block font-weight-normal mb-2">
+                                {% if nbProperties == 0 %}
+                                    0
+                                {% else %}
+                                    {{ nbProperties }}
+                                {% endif %}
+                            </span>
+                            <span class="font-weight-light">Biens</span>
+                        </div>
+
+                        <div class="h2 text-muted">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        Liste des biens en vente
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Titre</th>
+                                    <th>Prix</th>
+                                    <th>Commune</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if nbProperties != 0 %}
+                                    {% for property in pagination %}
+                                    <tr>
+                                        <td>{{ property.id }}</td>
+                                        <td class="text-nowrap">{{ property.title }}</td>
+                                        <td>{{ property.price|number_format(0, '.', '.') }}€</td>
+                                        <td>{{ property.city }}</td>
+                                        <td><a href="{{ path('platform_property_show', {'id': property.id}) }}" target="_blank" class="btn btn-info">Voir</a></td>
+                                        <td><a href="{{ path('agency_property_edit', {'id': property.id}) }}" class="btn btn-danger">Modifier</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td>Aucun bien en vente pour le moment</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

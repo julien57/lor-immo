@@ -14,6 +14,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class Agency implements UserInterface, \Serializable
 {
+    const TARGET_DIR_IMAGE = __DIR__.'/../../../web/agency/imgs/uploads';
+
     /**
      * @var int
      *
@@ -37,6 +39,13 @@ class Agency implements UserInterface, \Serializable
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
 
     /**
      * @var string
@@ -129,6 +138,24 @@ class Agency implements UserInterface, \Serializable
     }
 
     /**
+     * @return null|string
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param null|string $image
+     * @return Agency
+     */
+    public function setImage(?string $image): Agency
+    {
+        $this->image = $image;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getPassword(): string
@@ -174,6 +201,7 @@ class Agency implements UserInterface, \Serializable
 
     /**
      * @param int|null $postcode
+     *
      * @return Agency
      */
     public function setPostcode(?int $postcode): Agency
@@ -245,11 +273,13 @@ class Agency implements UserInterface, \Serializable
 
     /**
      * @param string $email
+     *
      * @return Agency
      */
     public function setEmail(string $email): Agency
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -306,8 +336,11 @@ class Agency implements UserInterface, \Serializable
 
     /**
      * String representation of object
-     * @link https://php.net/manual/en/serializable.serialize.php
+     *
+     * @see https://php.net/manual/en/serializable.serialize.php
+     *
      * @return string the string representation of the object or null
+     *
      * @since 5.1.0
      */
     public function serialize()
@@ -315,17 +348,19 @@ class Agency implements UserInterface, \Serializable
         return serialize([
             $this->id,
             $this->name,
-            $this->password
+            $this->password,
         ]);
     }
 
     /**
      * Constructs the object
-     * @link https://php.net/manual/en/serializable.unserialize.php
+     *
+     * @see https://php.net/manual/en/serializable.unserialize.php
+     *
      * @param string $serialized <p>
-     * The string representation of the object.
-     * </p>
-     * @return void
+     *                           The string representation of the object.
+     *                           </p>
+     *
      * @since 5.1.0
      */
     public function unserialize($serialized)
@@ -343,6 +378,7 @@ class Agency implements UserInterface, \Serializable
         $agency->city = $registrationDTO->getCity();
         $agency->password = $registrationDTO->getPassword();
         $agency->email = $registrationDTO->getEmail();
+        $agency->image = 'avatar-1.png';
 
         return $agency;
     }

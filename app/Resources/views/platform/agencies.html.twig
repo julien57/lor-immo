@@ -13,9 +13,9 @@
     <div class="container">
         <div class="row">
             {% for agency in pagination %}
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3">
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <img class="card-img-top" src="{{ asset('agency/imgs/uploads/' ~ agency.image ) }}" alt="{{ agency.name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ agency.name }}</h5>
                             <p class="card-text">{{ agency.description|slice(0, 100) ~ '...' }}</p>
@@ -24,7 +24,13 @@
                     </div>
                 </div>
             {% endfor %}
-            {{ knp_pagination_render(pagination) }}
         </div>
+        <div class="row">
+            <div class="col-md-12 offset-4 mt-5">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+        </div>
+
+
     </div>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Model\PropertyDTO;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -375,5 +376,26 @@ class Property
     public function setAgency(Agency $agency): void
     {
         $this->agency = $agency;
+    }
+
+    public static function initAgency(PropertyDTO $propertyDTO, Agency $agency)
+    {
+        $property = new self();
+
+        $property->title = $propertyDTO->getTitle();
+        $property->description = $propertyDTO->getDescription();
+        $property->room = $propertyDTO->getBedroom();
+        $property->bedroom = $propertyDTO->getBedroom();
+        $property->garage = $propertyDTO->getGarage();
+        $property->garden = $propertyDTO->getGarden();
+        $property->heater = $propertyDTO->getHeater();
+        $property->area = $propertyDTO->getArea();
+        $property->city = $propertyDTO->getCity();
+        $property->department = $propertyDTO->getDepartment();
+        $property->type = $propertyDTO->getType();
+        $property->price = $propertyDTO->getPrice();
+        $property->agency = $agency;
+
+        return $property;
     }
 }
