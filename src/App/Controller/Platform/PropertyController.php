@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PropertyController extends Controller
 {
     /**
-     * @Route("/biens/{page}", defaults={"page": 1}, requirements={"\d+"}, name="platform_property_properties")
+     * @Route("/biens", name="platform_property_properties")
      */
     public function propertiesAction(EntityManagerInterface $em, PaginatorInterface $knpPaginator, Request $request)
     {
