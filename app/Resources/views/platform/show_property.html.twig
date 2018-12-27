@@ -6,7 +6,7 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">{{ property.title }}</h1>
-            <p class="lead">{{ property.description }}</p>
+            <p class="lead">{{ property.type }} de {{ property.area }} m² à {{ property.city }}.</p>
         </div>
     </div>
 
@@ -23,20 +23,34 @@
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-agency" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
                     </div>
                 </nav>
-                <div class="tab-content" id="nav-tabContent">
+                <div class="tab-content mt-3" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-home-tab">
                         {{ property.description }}
                     </div>
                     <div class="tab-pane fade" id="nav-specification" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <p><i class="fas fa-chart-area"></i> Surface : {{ property.area }} m2</p>
+                        <p><i class="fas fa-chart-area"></i> Surface : {{ property.area }} m²</p>
                         <p><i class="fas fa-fire"></i> Chauffage : {{ property.heater }}</p>
                         <p><i class="far fa-square"></i> Pièces : {{ property.room }} pièces</p>
-                        <p><i class="fas fa-bed"></i> Chambres : {{ property.bedroom }} chambre{% if property.bedroom > 1 %}s{% endif %}</p>
-                        <p><i class="fas fa-warehouse"></i> Garage : {% if property.garden %}Oui{% else %}Non{% endif %}</p>
-                        <p><i class="fas fa-tree"></i> Jardin : {{ property.garden }} m2</p>
+                        <p><i class="fas fa-bed"></i> Chambres : {{ property.bedroom }} chambre
+                            {% if property.bedroom > 1 %}s{% endif %}
+                        </p>
+                        <p><i class="fas fa-warehouse"></i> Garage :
+                            {% if property.garden %}Oui{% else %}Non{% endif %}
+                        </p>
+                        <p><i class="fas fa-tree"></i> Jardin : {{ property.garden }} m²</p>
                     </div>
                     <div class="tab-pane fade" id="nav-agency" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        <p>Te</p>
+                        <h3>Infos agence</h3>
+                        <p><i class="fas fa-address-card"></i> Agence : {{ property.agency.name }}</p>
+                        <p><i class="fas fa-map-marked-alt"></i> Adresse :
+                            {{ property.agency.address }} - {{ property.agency.city }}
+                        </p>
+                        <h3>Contact</h3>
+                        <p><i class="fas fa-at"></i> Mail : {{ property.agency.email }}</p>
+                        <p><i class="fas fa-phone"></i> Tél : {{ property.agency.phone }}</p>
+                        <p><i class="fas fa-link"></i> Site Web :
+                            <a href="{{ property.agency.website }}" target="_blank">{{ property.agency.website }}</a>
+                        </p>
                     </div>
                 </div>
             </div>

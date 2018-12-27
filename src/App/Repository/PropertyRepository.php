@@ -35,7 +35,8 @@ class PropertyRepository extends \Doctrine\ORM\EntityRepository
     {
         $query = $this->createQueryBuilder('p')
             ->join('p.agency', 'a')
-            ->addSelect('a');
+            ->addSelect('a')
+            ->orderBy('p.id', 'DESC');
 
         if ($searchPropertyDTO->getType()) {
             $query = $query
