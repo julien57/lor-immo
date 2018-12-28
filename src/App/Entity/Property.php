@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Model\PropertyDTO;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -113,6 +114,20 @@ class Property
      * @ORM\JoinColumn(nullable=false)
      */
     private $agency;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", cascade={"persist"}, mappedBy="property")
+     */
+    private $photos;
+
+
+    public function __construct()
+    {
+        $this->photos = new ArrayCollection();
+    }
+
 
     /**
      * @return int
@@ -378,7 +393,41 @@ class Property
         $this->agency = $agency;
     }
 
-    public static function initAgency(PropertyDTO $propertyDTO, Agency $agency)
+    /**
+     * @param Photo $photo
+     */
+    public function addPhoto(Photo $photo)
+    {
+        $photo->setProperty($this);
+
+        $this->photos[] = $photo;
+    }
+
+    /**
+     * @param Photo $photo
+     */
+    public function removePhoto(Photo $photo): void
+    {
+        $this->photos->removeElement($photo);
+    }
+
+    /**
+     * @param mixed $photos
+     */
+    public function setPhotos($photos): void
+    {
+        $this->photos = $photos;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    public static function initProperty(PropertyDTO $propertyDTO, Agency $agency)
     {
         $property = new self();
 
