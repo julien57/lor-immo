@@ -41,22 +41,25 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{ form_row(form.type) }}
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{ form_row(form.department) }}
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{ form_row(form.city) }}
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 {{ form_row(form.price) }}
                             </div>
                         </div>
                         <div class="row">
+                            <ul class="photo list-group" data-prototype="{{ form_widget(form.photo.vars.prototype)|e('html_attr') }}">
+
+                            </ul>
+                        </div>
+                        <div class="form-group mt-5">
                             <div class="col-md-12">
                                 <div class="float-left">
                                     <a href="{{ path('agency_home_dashboard') }}" class="btn-lg btn-secondary">
@@ -78,5 +81,42 @@
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block javascript %}
+    var $collectionHolder;
+
+const $addPhotoButton = $('<button type="button" class="btn btn-primary add_property_photo">Ajouter une photo</button>');
+const $newLinkLi = $('<li class="list-group-item"></li>').append($addPhotoButton);
+
+jQuery(document).ready(function () {
+
+    $collectionHolder = $('ul.photo');
+    $collectionHolder.append($newLinkLi);
+
+    $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+    $addPhotoButton.click(function (e) {
+
+        addPhotoForm($collectionHolder, $newLinkLi);
+    });
+
+    function addPhotoForm($collectionHolder, $newLinkLi) {
+
+        const prototype = $collectionHolder.data('prototype');
+
+        const index = $collectionHolder.data('index');
+
+        let newForm = prototype;
+
+        newForm = newForm.replace(/__name__/g, index);
+
+        $collectionHolder.data('index', index + 1);
+
+        const $newFormLi = $('<li class="list-group-item"></li>').append(newForm);
+        $newLinkLi.before($newFormLi);
+    }
+})
 
 {% endblock %}

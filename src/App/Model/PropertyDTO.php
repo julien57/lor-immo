@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class PropertyDTO
@@ -91,6 +92,12 @@ class PropertyDTO
      * @Assert\Type(type="string", message="Le prix du bien doit être exprimée en chiffre.")
      */
     private $price;
+
+    /**
+     * @var array|null
+     */
+    private $photo;
+
 
     /**
      * @return null|string
@@ -282,5 +289,21 @@ class PropertyDTO
     public function setPrice(?string $price): void
     {
         $this->price = $price;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getPhoto(): ?array
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param array|null $photo
+     */
+    public function setPhoto(?array $photo): void
+    {
+        $this->photo = $photo;
     }
 }

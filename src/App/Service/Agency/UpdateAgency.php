@@ -4,10 +4,13 @@ namespace App\Service\Agency;
 
 use App\Entity\Agency;
 use App\Model\AgencyDTO;
+use App\Service\File\UniqueFileName;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class UpdateAgency
 {
+    use UniqueFileName;
+
     public function update(AgencyDTO $agencyDTO, Agency $agency)
     {
         $agency->setDescription($agencyDTO->getDescription());
@@ -36,10 +39,5 @@ class UpdateAgency
         }
 
         return $agency;
-    }
-
-    private function generateUniqueFileName()
-    {
-        return md5(uniqid());
     }
 }
